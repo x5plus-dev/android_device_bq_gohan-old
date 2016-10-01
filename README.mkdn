@@ -1,0 +1,19 @@
+Copyright 2016 - The CyanogenMod Project.
+
+Device Tree for BQ Aquaris X5 Plus (gohan)
+===========================================
+
+Basic   | Spec Sheet
+-------:|:-------------------------
+CPU     | Quad-core 1.4 GHz Cortex-A53 & Quad-core 1.8 GHz Cortex-A72
+Chipset | Qualcomm MSM8976 Snapdragon 652
+GPU     | Adreno 510
+Memory  | 2GB/3GB DDR3 Dual-channel
+Storage | 16GB/32GB
+MicroSD | Up to 256GB
+Battery | Non-removable Li-Po 3200 mAh battery
+Display | 1920x1080 pixels, 5 inches (~441 ppi pixel density)
+Camera  | Primary: 16 MP, f/2.0, phase detection autofocus, dual-LED (dual tone) flash
+	| Secondary: 8 MP, f/2.0, 1/4" sensor size
+
+![BQ Aquaris X5 Plus](http://cdn2.gsmarena.com/vv/pics/bq/bq-aquaris-x5-plus-1.jpg "BQ Aquaris X5 Plus")
