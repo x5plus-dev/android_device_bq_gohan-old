@@ -89,15 +89,27 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf \
     $(LOCAL_PATH)/audio/mixer_paths.xml:system/etc/mixer_paths_wcd9326.xml
 
+# Bluetooth
+PRODUCT_PROPERTY_OVERRIDES += \
+    bluetooth.hfp.client=1
+
 # Browser
 PRODUCT_PACKAGES += \
     Gello
+
+# Camera
+PRODUCT_PACKAGES += \
+    Snap
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    camera.hal1.packagelist=com.skype.raider,com.google.android.talk \
+    persist.camera.HAL3.enabled=1
 
 # Connectivity Engine support (CNE)
 PRODUCT_PACKAGES += \
     libcnefeatureconfig
 
-# DataServices
+# Data services
 PRODUCT_PACKAGES += \
     librmnetctl
 
@@ -201,14 +213,25 @@ PRODUCT_PACKAGES += \
     libOmxVenc \
     libstagefrighthw
 
+# Perf
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.vendor.extension_library=libqti-perfd-client.so \
+    ro.vendor.at_library=libqti-at.so \
+    ro.vendor.gt_library=libqti-gt.so
+
 # Power
 PRODUCT_PACKAGES += \
-    power.msm8952
+    power.qcom
 
 # Qualcomm dependencies
 PRODUCT_PACKAGES += \
     libtinyxml \
     libxml2
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.qcom.ad.calib.data=/data/misc/display/calib.cfg \
+    ro.qcom.ad=1 \
+    ro.qualcomm.cabl=0
 
 # Ramdisk
 PRODUCT_PACKAGES += \
@@ -228,10 +251,6 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PACKAGES += \
     sensors.msm8952
-
-# Snapdragon Camera
-PRODUCT_PACKAGES += \
-    Snap
 
 # Sound trigger
 PRODUCT_COPY_FILES += \

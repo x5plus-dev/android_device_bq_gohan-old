@@ -26,7 +26,7 @@ $(call inherit-product, device/bq/gohan/device.mk)
 # Set those variables here to overwrite the inherited values.
 BOARD_VENDOR := bq
 PRODUCT_BRAND := bq
-PRODUCT_DEVICE := Aquaris_X5_Plus
+PRODUCT_DEVICE := gohan
 PRODUCT_NAME := cm_gohan
 PRODUCT_MANUFACTURER := BQ
 PRODUCT_MODEL := Aquaris X5 Plus

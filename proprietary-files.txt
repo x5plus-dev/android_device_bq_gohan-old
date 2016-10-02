@@ -905,6 +905,8 @@ vendor/firmware/libpn547_fw.so
 # Perf
 bin/msm_irqbalance
 vendor/bin/perfd
+vendor/lib/libqti-at.so
+vendor/lib/libqti-gt.so
 vendor/lib/libqti-perfd-client.so
 
 # Peripheral manager

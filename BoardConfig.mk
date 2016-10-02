@@ -134,6 +134,9 @@ USE_DEVICE_SPECIFIC_GPS := true
 USE_DEVICE_SPECIFIC_LOC_API := true
 TARGET_NO_RPC := true
 
+# Headers
+TARGET_SPECIFIC_HEADER_PATH := device/bq/gohan/include
+
 # Init
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
 
@@ -148,7 +151,6 @@ TARGET_PROVIDES_LIBLIGHT := true
 MALLOC_IMPL := dlmalloc
 
 # NFC
-BOARD_HAS_NFC := true
 BOARD_NFC_CHIPSET := pn547
 BOARD_NFC_DEVICE := "/dev/pn547"
 
@@ -156,6 +158,7 @@ BOARD_NFC_DEVICE := "/dev/pn547"
 TARGET_PER_MGR_ENABLED := true
 
 # Power
+CM_POWERHAL_EXTENSION := qcom
 TARGET_POWERHAL_VARIANT := qcom
 
 # Properties
