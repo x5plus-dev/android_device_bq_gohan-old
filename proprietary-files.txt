@@ -827,6 +827,7 @@ vendor/lib/egl/libq3dtools_adreno.so
 vendor/lib/egl/libq3dtools_esx.so
 vendor/lib/egl/libQTapGLES.so
 vendor/lib/libadreno_utils.so
+vendor/lib/libbccQTI.so
 vendor/lib/libC2D2.so
 vendor/lib/libc2d30-a3xx.so
 vendor/lib/libc2d30-a4xx.so
@@ -905,8 +906,6 @@ vendor/firmware/libpn547_fw.so
 # Perf
 bin/msm_irqbalance
 vendor/bin/perfd
-vendor/lib/libqti-at.so
-vendor/lib/libqti-gt.so
 vendor/lib/libqti-perfd-client.so
 
 # Peripheral manager
