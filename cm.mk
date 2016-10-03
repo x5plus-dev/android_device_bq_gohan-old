@@ -34,6 +34,8 @@ TARGET_VENDOR := bq
 
 PRODUCT_GMS_CLIENTID_BASE := android-bq
 
+PRODUCT_BUILD_PROP_OVERRIDES += TARGET_DEVICE=Aquaris_X5_Plus PRODUCT_NAME=Aquaris_X5_Plus
+
 # Use the latest approved GMS identifiers unless running a signed build
 ifneq ($(SIGN_BUILD),true)
 PRODUCT_BUILD_PROP_OVERRIDES += \
