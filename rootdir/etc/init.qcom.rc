@@ -163,9 +163,16 @@ on boot
     chown system system /sys/class/leds/red/blink
     chown system system /sys/class/leds/green/blink
     chown system system /sys/class/leds/blue/blink
-    chown system system /sys/class/leds/red/led_time
-    chown system system /sys/class/leds/green/led_time
-    chown system system /sys/class/leds/blue/led_time
+    chown system system /sys/class/leds/led:flash_0/brightness
+    chown system system /sys/class/leds/led:flash_1/brightness
+    chown system system /sys/class/leds/led:switch/brightness
+    chown system system /sys/class/leds/led:torch_0/brightness
+    chown system system /sys/class/leds/led:torch_1/brightness
+    chown system camera /sys/class/leds/torch-light0/brightness
+    chmod 0660 /sys/class/leds/torch-light0/brightness
+    chown system camera /sys/class/leds/torch-light1/brightness
+    chmod 0660 /sys/class/leds/torch-light1/brightness
+    chown system camera /sys/class/leds/wled/brightness
 
 on fs
     mount_all fstab.qcom
