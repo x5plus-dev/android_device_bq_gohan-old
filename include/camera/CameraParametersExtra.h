@@ -16,8 +16,12 @@
 
 #define CAMERA_PARAMETERS_EXTRA_C \
 const char CameraParameters::KEY_NIGHTSHOT_ENABLE[] = "nightshot-enable"; \
+const char CameraParameters::KEY_NIGHTSHOT_ISENABLED[] = "nightshot-isenabled"; \
+const char CameraParameters::KEY_NIGHTHAWK_ENABLE[] = "nighthawk-enable"; \
 \
 
 #define CAMERA_PARAMETERS_EXTRA_H \
 static const char KEY_NIGHTSHOT_ENABLE[]; \
+static const char KEY_NIGHTSHOT_ISENABLED[]; \
+static const char KEY_NIGHTHAWK_ENABLE[]; \
 \
