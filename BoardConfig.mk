@@ -152,7 +152,6 @@ BOARD_NFC_DEVICE := "/dev/pn547"
 TARGET_PER_MGR_ENABLED := true
 
 # Power
-CM_POWERHAL_EXTENSION := qcom
 TARGET_POWERHAL_VARIANT := qcom
 
 # Properties
@@ -172,7 +171,6 @@ TARGET_RIL_VARIANT := caf
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
-BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
 
 # Sensors
 USE_SENSOR_MULTI_HAL := true

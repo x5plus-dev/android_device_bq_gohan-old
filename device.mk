@@ -213,22 +213,20 @@ PRODUCT_PACKAGES += \
     libOmxVenc \
     libstagefrighthw
 
-# Perf
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.extension_library=libqti-perfd-client.so \
-    ro.vendor.at_library=libqti-at.so \
-    ro.vendor.gt_library=libqti-gt.so
-
 # Power
 PRODUCT_PACKAGES += \
     power.msm8952
 
-# Qualcomm dependencies
+# Qualcomm
 PRODUCT_PACKAGES += \
     libtinyxml \
     libxml2
 
 PRODUCT_PROPERTY_OVERRIDES += \
+    ro.vendor.extension_library=/vendor/lib/libqti-perfd-client.so \
+    ro.vendor.at_library=libqti-at.so \
+    ro.vendor.gt_library=libqti-gt.so \
+    persist.timed.enable=true \
     ro.qcom.ad.calib.data=/data/misc/display/calib.cfg \
     ro.qcom.ad=1 \
     ro.qualcomm.cabl=0

@@ -84,6 +84,3 @@ telephony.lteOnCdmaDevice=1
 
 # Set composition for USB
 persist.sys.usb.config=diag,serial_smd,rmnet_ipa,serial_tty,mass_storage,adb
-
-# Time-services
-persist.timed.enable=true
