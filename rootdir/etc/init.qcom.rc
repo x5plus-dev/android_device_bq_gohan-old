@@ -91,15 +91,14 @@ on boot
     chmod 2770 /dev/socket/qmux_bluetooth
     mkdir /dev/socket/qmux_gps 0770 gps gps
     chmod 2770 /dev/socket/qmux_gps
-
     mkdir /persist/drm 0770 system system
-
+    mkdir /persist/misc 0770 system system
     mkdir /persist/bluetooth 0770 bluetooth bluetooth
 
-    #Create NETMGR daemon socket area
+    # Create NETMGR daemon socket area
     mkdir /dev/socket/netmgr 0750 radio radio
 
-    #Remove SUID bit for iproute2 ip tool
+    # Remove SUID bit for iproute2 ip tool
     chmod 0755 /system/bin/ip
 
     chmod 0444 /sys/devices/platform/msm_hsusb/gadget/usb_state
@@ -168,11 +167,11 @@ on boot
     chown system system /sys/class/leds/led:switch/brightness
     chown system system /sys/class/leds/led:torch_0/brightness
     chown system system /sys/class/leds/led:torch_1/brightness
+    chown system system /sys/class/leds/wled/brightness
     chown system camera /sys/class/leds/torch-light0/brightness
     chmod 0660 /sys/class/leds/torch-light0/brightness
     chown system camera /sys/class/leds/torch-light1/brightness
     chmod 0660 /sys/class/leds/torch-light1/brightness
-    chown system camera /sys/class/leds/wled/brightness
 
 on fs
     mount_all fstab.qcom
@@ -382,12 +381,6 @@ service port-bridge /system/bin/port-bridge /dev/mhi_pipe_32 /dev/ttyGS0
     group radio system inet
     disabled
     oneshot
-
-service qmiproxy /system/bin/qmiproxy
-    class main
-    user radio
-    group radio qcom_diag
-    disabled
 
 on property:bluetooth.hciattach=true
     start hciattach
