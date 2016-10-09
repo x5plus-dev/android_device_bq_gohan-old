@@ -458,6 +458,7 @@ vendor/lib/liblowi_client.so
 vendor/lib/liblowi_wifihal.so
 vendor/lib/liblowi_wifihal_nl.so
 vendor/lib/libquipc_os_api.so
+vendor/lib/libslimclient.so
 vendor/lib/libulp2.so
 vendor/lib/libxt_native.so
 vendor/lib/libxtadapter.so
@@ -554,6 +555,8 @@ vendor/firmware/libpn547_fw.so
 bin/msm_irqbalance
 vendor/bin/perfd
 vendor/lib/libqc-opt.so
+vendor/lib/libqti-at.so
+vendor/lib/libqti-gt.so
 vendor/lib/libqti-perfd-client.so
 
 # Peripheral manager
