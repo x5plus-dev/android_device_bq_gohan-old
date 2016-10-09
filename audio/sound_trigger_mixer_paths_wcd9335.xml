@@ -108,7 +108,6 @@
     <path name="listen-ape-headset-mic">
         <ctl name="MAD_BROADCAST Switch" value="1" />
         <ctl name="TX13 INP MUX" value="MAD_BRDCST" />
-        <ctl name="AIF4 Switch" value="1" />
         <ctl name="MAD Input" value="ADC2" />
     </path>
 
