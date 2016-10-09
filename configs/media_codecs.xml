@@ -12,19 +12,6 @@
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
      See the License for the specific language governing permissions and
      limitations under the License.
-
-     This file was modified by Dolby Laboratories, Inc. The portions of the
-     code that are surrounded by "DOLBY..." are copyrighted and
-     licensed separately, as follows:
-
-     (C) 2014-2015 Dolby Laboratories, Inc.
-     All rights reserved.
-
-     This program is protected under international and U.S. Copyright laws as
-     an unpublished work. This program is confidential and proprietary to the
-     copyright owners. Reproduction or disclosure, in whole or in part, or the
-     production of derivative works therefrom without the express permission of
-     the copyright owners is prohibited.
 -->
 
 <MediaCodecs>
@@ -135,26 +122,6 @@
             <Feature name="adaptive-playback" />
             <Limit name="concurrent-instances" max="13" />
         </MediaCodec>
-        <!-- DOLBY_UDC -->
-        <MediaCodec name="OMX.dolby.ac3.decoder" >
-            <Type name="audio/ac3" />
-            <Quirk name="needs-flush-before-disable" />
-            <Quirk name="requires-flush-complete-emulation" />
-            <Feature name="adaptive-playback" />
-        </MediaCodec>
-        <MediaCodec name="OMX.dolby.eac3.decoder" >
-            <Type name="audio/eac3" />
-            <Quirk name="needs-flush-before-disable" />
-            <Quirk name="requires-flush-complete-emulation" />
-            <Feature name="adaptive-playback" />
-        </MediaCodec>
-        <MediaCodec name="OMX.dolby.eac3_joc.decoder" >
-            <Type name="audio/eac3-joc" />
-            <Quirk name="needs-flush-before-disable" />
-            <Quirk name="requires-flush-complete-emulation" />
-            <Feature name="adaptive-playback" />
-        </MediaCodec>
-        <!-- DOLBY_UDC END -->
     </Decoders>
     <Include href="media_codecs_google_video.xml" />
 </MediaCodecs>
