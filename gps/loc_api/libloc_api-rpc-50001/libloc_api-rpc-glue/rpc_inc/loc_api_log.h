@@ -1,4 +1,4 @@
-/* Copyright (c) 2015, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2011 The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -9,7 +9,7 @@
  *       copyright notice, this list of conditions and the following
  *       disclaimer in the documentation and/or other materials provided
  *       with the distribution.
- *     * Neither the name of The Linux Foundation, nor the names of its
+ *     * Neither the name of The Linux Foundation nor the names of its
  *       contributors may be used to endorse or promote products derived
  *       from this software without specific prior written permission.
  *
@@ -26,33 +26,34 @@
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
-#ifndef __LOC_SHARED_LOCK__
-#define __LOC_SHARED_LOCK__
 
-#include <stddef.h>
-#include <pthread.h>
+#ifndef LOC_API_LOG_H
+#define LOC_API_LOG_H
 
-// This is a utility created for use cases such that there are more than
-// one client who need to share the same lock, but it is not predictable
-// which of these clients is to last to go away. This shared lock deletes
-// itself when the last client calls its drop() method. To add a cient,
-// this share lock's share() method has to be called, so that the obj
-// can maintain an accurate client count.
-class LocSharedLock {
-    uint32_t mRef;
-    pthread_mutex_t mMutex;
-    inline ~LocSharedLock() { pthread_mutex_destroy(&mMutex); }
-public:
-    // first client to create this LockSharedLock
-    inline LocSharedLock() : mRef(1) { pthread_mutex_init(&mMutex, NULL); }
-    // following client(s) are to *share()* this lock created by the first client
-    inline LocSharedLock* share() { mRef++; return this; }
-    // whe a client no longer needs this shared lock, drop() shall be called.
-    inline void drop() { if (0 == --mRef) delete this; }
-    // locking the lock to enter critical section
-    inline void lock() { pthread_mutex_lock(&mMutex); }
-    // unlocking the lock to leave the critical section
-    inline void unlock() { pthread_mutex_unlock(&mMutex); }
-};
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 
-#endif //__LOC_SHARED_LOCK__
+#include <ctype.h>
+#include "loc_api_rpcgen_common_rpc.h"
+
+extern int loc_callback_log(
+      rpc_loc_event_mask_type               loc_event,              /* event mask           */
+      const rpc_loc_event_payload_u_type*   loc_event_payload       /* payload              */
+);
+
+extern const char* loc_get_event_atl_open_name(rpc_loc_server_request_e_type loc_event_atl_open);
+extern const char* loc_get_event_name(rpc_loc_event_mask_type loc_event_mask);
+extern const char* loc_get_ioctl_type_name(rpc_loc_ioctl_e_type ioctl_type);
+extern const char* loc_get_ioctl_status_name(uint32 status);
+extern const char* loc_get_sess_status_name(rpc_loc_session_status_e_type status);
+extern const char* loc_get_engine_state_name(rpc_loc_engine_state_e_type state);
+extern const char* loc_get_fix_session_state_name(rpc_loc_fix_session_state_e_type state);
+extern const char* loc_get_rpc_reset_event_name(enum rpc_reset_event event);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* LOC_API_LOG_H */

@@ -1,4 +1,4 @@
-/* Copyright (c) 2015, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2011, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -9,7 +9,7 @@
  *       copyright notice, this list of conditions and the following
  *       disclaimer in the documentation and/or other materials provided
  *       with the distribution.
- *     * Neither the name of The Linux Foundation, nor the names of its
+ *     * Neither the name of The Linux Foundation nor the names of its
  *       contributors may be used to endorse or promote products derived
  *       from this software without specific prior written permission.
  *
@@ -24,35 +24,46 @@
  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
  */
-#ifndef __LOC_SHARED_LOCK__
-#define __LOC_SHARED_LOCK__
 
-#include <stddef.h>
-#include <pthread.h>
+#ifndef DEBUG_H
+#define DEBUG_H
 
-// This is a utility created for use cases such that there are more than
-// one client who need to share the same lock, but it is not predictable
-// which of these clients is to last to go away. This shared lock deletes
-// itself when the last client calls its drop() method. To add a cient,
-// this share lock's share() method has to be called, so that the obj
-// can maintain an accurate client count.
-class LocSharedLock {
-    uint32_t mRef;
-    pthread_mutex_t mMutex;
-    inline ~LocSharedLock() { pthread_mutex_destroy(&mMutex); }
-public:
-    // first client to create this LockSharedLock
-    inline LocSharedLock() : mRef(1) { pthread_mutex_init(&mMutex, NULL); }
-    // following client(s) are to *share()* this lock created by the first client
-    inline LocSharedLock* share() { mRef++; return this; }
-    // whe a client no longer needs this shared lock, drop() shall be called.
-    inline void drop() { if (0 == --mRef) delete this; }
-    // locking the lock to enter critical section
-    inline void lock() { pthread_mutex_lock(&mMutex); }
-    // unlocking the lock to leave the critical section
-    inline void unlock() { pthread_mutex_unlock(&mMutex); }
-};
+#include <stdio.h>
 
-#endif //__LOC_SHARED_LOCK__
+#define LOG_TAG "LocSvc_rpc"
+#include <utils/Log.h>
+
+#define PRINT(x...) do {                                    \
+        fprintf(stdout, "%s(%d) ", __FUNCTION__, __LINE__); \
+        fprintf(stdout, ##x);                               \
+        ALOGD(x);                               \
+    } while(0)
+
+#ifdef DEBUG
+#define D PRINT
+#else
+#define D(x...) do { } while(0)
+#endif
+
+#ifdef VERBOSE
+#define V PRINT
+#else
+#define V(x...) do { } while(0)
+#endif
+
+#define E(x...) do {                                        \
+        fprintf(stderr, "%s(%d) ", __FUNCTION__, __LINE__); \
+        fprintf(stderr, ##x);                               \
+        ALOGE(x);                                            \
+    } while(0)
+
+#define FAILIF(cond, msg...) do {                                              \
+        if (__builtin_expect (cond, 0)) {                                      \
+            fprintf(stderr, "%s:%s:(%d): ", __FILE__, __FUNCTION__, __LINE__); \
+            fprintf(stderr, ##msg);                                            \
+            ALOGE(##msg);                                                       \
+        }                                                                      \
+    } while(0)
+
+#endif/*DEBUG_H*/

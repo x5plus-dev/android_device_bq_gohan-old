@@ -1,4 +1,4 @@
-/* Copyright (c) 2015, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2011, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -9,7 +9,7 @@
  *       copyright notice, this list of conditions and the following
  *       disclaimer in the documentation and/or other materials provided
  *       with the distribution.
- *     * Neither the name of The Linux Foundation, nor the names of its
+ *     * Neither the name of The Linux Foundation nor the names of its
  *       contributors may be used to endorse or promote products derived
  *       from this software without specific prior written permission.
  *
@@ -24,35 +24,63 @@
  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
  */
-#ifndef __LOC_SHARED_LOCK__
-#define __LOC_SHARED_LOCK__
 
-#include <stddef.h>
-#include <pthread.h>
+#include "rpc/rpc.h"
 
-// This is a utility created for use cases such that there are more than
-// one client who need to share the same lock, but it is not predictable
-// which of these clients is to last to go away. This shared lock deletes
-// itself when the last client calls its drop() method. To add a cient,
-// this share lock's share() method has to be called, so that the obj
-// can maintain an accurate client count.
-class LocSharedLock {
-    uint32_t mRef;
-    pthread_mutex_t mMutex;
-    inline ~LocSharedLock() { pthread_mutex_destroy(&mMutex); }
-public:
-    // first client to create this LockSharedLock
-    inline LocSharedLock() : mRef(1) { pthread_mutex_init(&mMutex, NULL); }
-    // following client(s) are to *share()* this lock created by the first client
-    inline LocSharedLock* share() { mRef++; return this; }
-    // whe a client no longer needs this shared lock, drop() shall be called.
-    inline void drop() { if (0 == --mRef) delete this; }
-    // locking the lock to enter critical section
-    inline void lock() { pthread_mutex_lock(&mMutex); }
-    // unlocking the lock to leave the critical section
-    inline void unlock() { pthread_mutex_unlock(&mMutex); }
-};
+/* Include RPC headers */
+#ifdef USE_LOCAL_RPC
+#include "rpc_inc/loc_api_common.h"
+#include "rpc_inc/loc_api.h"
+#include "rpc_inc/loc_api_cb.h"
+#endif
 
-#endif //__LOC_SHARED_LOCK__
+#ifdef USE_QCOM_AUTO_RPC
+#include "loc_api_rpcgen_rpc.h"
+#include "loc_api_rpcgen_common_rpc.h"
+#include "loc_api_rpcgen_cb_rpc.h"
+#endif
+
+#include "rpc_inc/loc_api_fixup.h"
+#include "loc_apicb_appinit.h"
+
+#define RPC_FUNC_VERSION_BASE(a,b) a ## b
+#define RPC_CB_FUNC_VERS(a,b) RPC_FUNC_VERSION_BASE(a,b)
+
+static SVCXPRT* svrPort = NULL;
+
+extern void RPC_CB_FUNC_VERS(loc_apicbprog_,LOC_APICBVERS_0001)(struct svc_req *rqstp, register SVCXPRT *transp);
+
+int loc_apicb_app_init(void)
+{
+
+  /* Register a callback server to use the loc_apicbprog_* function  */
+  if (svrPort == NULL) {
+        svrPort = svcrtr_create();
+  }
+  if (!svrPort) return -1;
+
+  xprt_register(svrPort);
+  if(svc_register(svrPort, LOC_APICBPROG, LOC_APICBVERS_0001, RPC_CB_FUNC_VERS(loc_apicbprog_,LOC_APICBVERS_0001),0))
+  {
+     return 0;
+  }
+  else
+  {
+    return -1;
+  }
+}
+
+void loc_apicb_app_deinit(void)
+{
+   if (svrPort == NULL)
+   {
+      return;
+   }
+
+   svc_unregister(svrPort, LOC_APICBPROG, LOC_APICBVERS_0001);
+   xprt_unregister(svrPort);
+   svc_destroy(svrPort);
+   svrPort = NULL;
+}
+
