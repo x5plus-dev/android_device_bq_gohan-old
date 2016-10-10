@@ -108,8 +108,7 @@ PRODUCT_PACKAGES += \
     Snap
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    camera.hal1.packagelist=com.skype.raider,com.google.android.talk \
-    persist.camera.HAL3.enabled=1
+    camera.hal1.packagelist=com.skype.raider,com.google.android.talk
 
 # Connectivity Engine support (CNE)
 PRODUCT_PACKAGES += \
@@ -126,6 +125,12 @@ PRODUCT_PACKAGES += \
     hwcomposer.msm8952 \
     memtrack.msm8952 \
     liboverlay
+
+# Ebtables
+PRODUCT_PACKAGES += \
+    ebtables \
+    ethertypes \
+    libebtc
 
 # Fingerprint
 PRODUCT_PACKAGES += \
@@ -215,10 +220,6 @@ PRODUCT_PACKAGES += \
     libOmxVenc \
     libstagefrighthw
 
-# Power
-PRODUCT_PACKAGES += \
-    power.qcom
-
 # Qualcomm
 PRODUCT_PACKAGES += \
     libtinyxml \
@@ -280,7 +281,8 @@ PRODUCT_PACKAGES += \
     libcurl \
     libqsap_sdk \
     libQWiFiSoftApCfg \
-    libwpa_client
+    libwpa_client \
+    wcnss_service
 
 PRODUCT_PACKAGES += \
     dhcpcd.conf \
@@ -294,8 +296,5 @@ PRODUCT_PACKAGES += \
     wpa_supplicant_overlay.conf
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    wifi.interface=wlan0 \
-    ro.disableWifiApFirmwareReload=true \
     persist.debug.wfd.enable=1 \
     persist.hwc.enable_vds=1 \
-    persist.sys.wfd.virtual=0

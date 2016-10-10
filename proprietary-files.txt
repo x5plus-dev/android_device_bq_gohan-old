@@ -48,6 +48,7 @@ vendor/lib/rfsa/adsp/libfastcvadsp.so
 vendor/lib/rfsa/adsp/libfastcvadsp_skel.so
 
 # Audio
+etc/firmware/tfa98xx.cnt
 vendor/lib/libacdb-fts.so
 vendor/lib/libacdbloader.so
 vendor/lib/libacdbrtac.so
@@ -102,20 +103,13 @@ vendor/lib/libmmcamera_cac3_lib.so
 vendor/lib/libmmcamera_chromaflash_lib.so
 vendor/lib/libmmcamera_csidtg.so
 vendor/lib/libmmcamera_dcrf_lib.so
-vendor/lib/libmmcamera_dw9761b_eeprom.so
 vendor/lib/libmmcamera_eeprom_util.so
 vendor/lib/libmmcamera_eztune_module.so
 vendor/lib/libmmcamera_faceproc.so
 vendor/lib/libmmcamera_hdr_gb_lib.so
 vendor/lib/libmmcamera_imglib.so
-vendor/lib/libmmcamera_imx132.so
-vendor/lib/libmmcamera_imx135.so
-vendor/lib/libmmcamera_imx214.so
 vendor/lib/libmmcamera_imx219_cmb104.so
 vendor/lib/libmmcamera_imx219_d8n03d.so
-vendor/lib/libmmcamera_imx230.so
-vendor/lib/libmmcamera_imx258.so
-vendor/lib/libmmcamera_imx258_gt24c16_eeprom.so
 vendor/lib/libmmcamera_imx298.so
 vendor/lib/libmmcamera_imx298_cmb087qr.so
 vendor/lib/libmmcamera_isp_abcc44.so
@@ -152,43 +146,16 @@ vendor/lib/libmmcamera_isp_scaler_viewfinder44.so
 vendor/lib/libmmcamera_isp_sce40.so
 vendor/lib/libmmcamera_isp_sub_module.so
 vendor/lib/libmmcamera_isp_wb40.so
-vendor/lib/libmmcamera_le2464c_eeprom.so
-vendor/lib/libmmcamera_le2464c_master_eeprom.so
 vendor/lib/libmmcamera_llvd.so
-vendor/lib/libmmcamera_mt9m114.so
-vendor/lib/libmmcamera_onsemi_cat24c16_eeprom.so
-vendor/lib/libmmcamera_onsemi_cat24c32_eeprom.so
 vendor/lib/libmmcamera_optizoom_lib.so
-vendor/lib/libmmcamera_ov13850.so
-vendor/lib/libmmcamera_ov13850_polaris.so
-vendor/lib/libmmcamera_ov13850_q13v06k.so
-vendor/lib/libmmcamera_ov2685.so
-vendor/lib/libmmcamera_ov2685_scv3b4035.so
-vendor/lib/libmmcamera_ov4688.so
-vendor/lib/libmmcamera_ov4688_eeprom.so
-vendor/lib/libmmcamera_ov5645.so
-vendor/lib/libmmcamera_ov5670.so
-vendor/lib/libmmcamera_ov5670_polaris.so
-vendor/lib/libmmcamera_ov8858.so
-vendor/lib/libmmcamera_ov8865.so
 vendor/lib/libmmcamera_pdaf.so
 vendor/lib/libmmcamera_pdafcamif.so
 vendor/lib/libmmcamera_ppbase_module.so
-vendor/lib/libmmcamera_s5k3m2xm.so
-vendor/lib/libmmcamera_s5k3m2xm_flipmirror.so
-vendor/lib/libmmcamera_s5k3m2xx.so
-vendor/lib/libmmcamera_semco_cat24c64_eeprom.so
-vendor/lib/libmmcamera_sony_imx214_eeprom.so
-vendor/lib/libmmcamera_sonyimx135_eeprom.so
-vendor/lib/libmmcamera_sunny_8865_eeprom.so
 vendor/lib/libmmcamera_sunny_imx219_d8n03d_eeprom.so
-vendor/lib/libmmcamera_sunny_q13v06k_eeprom.so
-vendor/lib/libmmcamera_sunny_q5v41b_eeprom.so
 vendor/lib/libmmcamera_sw_tnr.so
 vendor/lib/libmmcamera_thread_services.so
 vendor/lib/libmmcamera_tintless_algo.so
 vendor/lib/libmmcamera_tintless_bg_pca_algo.so
-vendor/lib/libmmcamera_truly_cma481_eeprom.so
 vendor/lib/libmmcamera_truly_imx219_cmb104_eeprom.so
 vendor/lib/libmmcamera_truly_imx298_cmb087qr_eeprom.so
 vendor/lib/libmmcamera_tuning.so
@@ -213,17 +180,7 @@ vendor/lib/libts_detected_face_hal.so
 vendor/lib/libts_face_beautify_hal.so
 
 # Camera actuators
-vendor/lib/libactuator_ad5816g.so
-vendor/lib/libactuator_ad5823.so
-vendor/lib/libactuator_bu64244gwz.so
-vendor/lib/libactuator_bu64297.so
-vendor/lib/libactuator_dw9714.so
-vendor/lib/libactuator_dw9716.so
-vendor/lib/libactuator_dw9761b.so
-vendor/lib/libactuator_dw9800w_cmb087qr.so
 vendor/lib/libactuator_lc898122.so
-vendor/lib/libactuator_lc898212xd.so
-vendor/lib/libactuator_rohm_bu64243gwz.so
 
 # Camera chromatix
 vendor/lib/libchromatix_imx219_cmb104_a3_default_preview.so
@@ -572,6 +529,9 @@ vendor/lib/libmm-dspp-utils.so
 vendor/lib/libmm-qdcm-diag.so
 vendor/lib/libmm-qdcm.so
 
+# QCOM Power
+lib/hw/power.qcom.so
+
 # QMI
 bin/irsc_util
 vendor/lib/libdiag.so
@@ -684,6 +644,3 @@ bin/time_daemon
 bin/cnss-daemon
 -vendor/lib/libtime_genoff.so
 vendor/lib/libTimeService.so
-
-# WiFi
-bin/wcnss_service
