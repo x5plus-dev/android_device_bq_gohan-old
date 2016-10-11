@@ -462,9 +462,6 @@ etc/firmware/a530_pm4.fw
 # IPA
 bin/ipacm-diag
 
-# Keystore
-vendor/lib/hw/keystore.msm8952.so
-
 # Media
 lib/libOmxVpp.so
 lib/libvpplibrary.so

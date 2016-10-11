@@ -147,7 +147,6 @@ TARGET_SPECIFIC_HEADER_PATH := device/bq/gohan/include
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
 
 # Keymaster
-TARGET_PROVIDES_KEYMASTER := true
 TARGET_KEYMASTER_WAIT_FOR_QSEE := true
 
 # Lights
