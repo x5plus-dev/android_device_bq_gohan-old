@@ -180,7 +180,17 @@ vendor/lib/libts_detected_face_hal.so
 vendor/lib/libts_face_beautify_hal.so
 
 # Camera actuators
+vendor/lib/libactuator_ad5816g.so
+vendor/lib/libactuator_ad5823.so
+vendor/lib/libactuator_bu64244gwz.so
+vendor/lib/libactuator_bu64297.so
+vendor/lib/libactuator_dw9714.so
+vendor/lib/libactuator_dw9716.so
+vendor/lib/libactuator_dw9761b.so
+vendor/lib/libactuator_dw9800w_cmb087qr.so
 vendor/lib/libactuator_lc898122.so
+vendor/lib/libactuator_lc898212xd.so
+vendor/lib/libactuator_rohm_bu64243gwz.so
 
 # Camera chromatix
 vendor/lib/libchromatix_imx219_cmb104_a3_default_preview.so
@@ -350,6 +360,9 @@ vendor/lib/libdpmtcm.so
 
 # DRM
 bin/qseecomd
+lib/libomadrmutils_jni.so
+vendor/bin/qseeproxydaemon
+vendor/lib/drm/libomadrmengine.so
 vendor/lib/drm/libdrmwvmplugin.so
 vendor/lib/libdrmdecrypt.so
 vendor/lib/libdrmfs.so
@@ -365,9 +378,16 @@ vendor/lib/libSecureUILib.so
 vendor/lib/libsecureui_svcsock.so
 vendor/lib/libStDrvInt.so
 vendor/lib/libssd.so
+vendor/lib/libtzdrmgenprov.so
+vendor/lib/libtzplayready.so
 vendor/lib/libwvm.so
+vendor/lib/qcdrm/playready/lib/drm/libdrmprplugin_customer.so
+vendor/lib/qcdrm/playready/lib/mediadrm/libprmediadrmdecrypt_customer.so
+vendor/lib/qcdrm/playready/lib/mediadrm/libprmediadrmplugin_customer.so
+vendor/lib/qcdrm/playready/lib/libprdrmdecrypt_customer.so
+vendor/lib/qcdrm/playready/lib/libtzplayready_customer.so
 
-# Firmwares
+# Firmware
 etc/firmware/DE.o.msm8952
 etc/firmware/DE.o.msm8976
 
@@ -462,6 +482,15 @@ etc/firmware/a530_pm4.fw
 # IPA
 bin/ipacm-diag
 
+# Keystore
+vendor/lib/hw/keystore.msm8952.so
+
+# Listen
+vendor/lib/hw/sound_trigger.primary.msm8952.so
+vendor/lib/liblistenjni.so
+vendor/lib/liblistensoundmodel2.so
+vendor/lib/libsmwrapper.so
+
 # Media
 lib/libOmxVpp.so
 lib/libvpplibrary.so
@@ -519,6 +548,9 @@ bin/pm-service
 vendor/lib/libperipheral_client.so
 
 # Postprocessing
+etc/permissions/com.qti.snapdragon.sdk.display.xml
+framework/com.qti.snapdragon.sdk.display.jar
+-vendor/app/colorservice/colorservice.apk
 vendor/bin/mm-pp-daemon
 vendor/lib/libdisp-aba.so
 vendor/lib/libmm-als.so
@@ -526,11 +558,15 @@ vendor/lib/libmm-dspp-utils.so
 vendor/lib/libmm-qdcm-diag.so
 vendor/lib/libmm-qdcm.so
 
+# QCOM Crypto
+lib/libcryptfs_hw.so
+
 # QCOM Power
 lib/hw/power.qcom.so
 
 # QMI
 bin/irsc_util
+etc/permissions/qti_permissions.xml
 vendor/lib/libdiag.so
 vendor/lib/libdsi_netctrl.so
 vendor/lib/libdsutils.so
@@ -567,6 +603,7 @@ etc/permissions/qcnvitems.xml
 etc/permissions/qcrilhook.xml
 etc/permissions/telephonyservice.xml
 framework/embmslibrary.jar
+-framework/ConnectivityExt.jar
 -framework/qcnvitems.jar
 -framework/qcrilhook.jar
 framework/qti-telephony-common.jar
@@ -617,15 +654,19 @@ vendor/lib/libvoice-svc.so
 bin/sensors.qcom
 lib/hw/sensors.msm8952.so
 vendor/lib/hw/activity_recognition.msm8952.so
+vendor/lib/libasn1cper.so
+vendor/lib/libasn1crt.so
+vendor/lib/libasn1crtx.so
 vendor/lib/libsensor1.so
 vendor/lib/libsensor_reg.so
 vendor/lib/libsensor_user_cal.so
 vendor/lib/sensor_calibrate.so
 vendor/lib/sensors.ssc.so
 
-# Sound trigger
-vendor/lib/hw/sound_trigger.primary.msm8952.so
-vendor/lib/libsmwrapper.so
+# Sound card
+etc/ftm_test_config_msm8976-tasha-skun-snd-card
+etc/ftm_test_config_msm8976-tasha-snd-card
+etc/ftm_test_config_wcd9335
 
 # Thermal
 vendor/bin/thermal-engine
@@ -633,6 +674,8 @@ vendor/lib/libthermalclient.so
 vendor/lib/libthermalioctl.so
 
 # Widevine
+etc/permissions/com.google.widevine.software.drm.xml
+-framework/com.google.widevine.software.drm.jar
 vendor/lib/libWVStreamControlAPI_L3.so
 vendor/lib/libwvdrm_L3.so
 vendor/lib/mediadrm/libwvdrmengine.so
@@ -640,8 +683,9 @@ vendor/lib/mediadrm/libwvdrmengine.so
 # Time services
 -app/TimeService/TimeService.apk
 bin/time_daemon
+-vendor/lib/libtime_genoff.so
+vendor/lib/libTimeService.so
 
 # WiFi
 bin/cnss-daemon
--vendor/lib/libtime_genoff.so
-vendor/lib/libTimeService.so
+bin/wcnss_service

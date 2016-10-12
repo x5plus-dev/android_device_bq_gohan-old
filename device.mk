@@ -99,16 +99,13 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     bluetooth.hfp.client=1
 
-# Browser
-PRODUCT_PACKAGES += \
-    Gello
-
 # Camera
 PRODUCT_PACKAGES += \
     Snap
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    camera.hal1.packagelist=com.skype.raider,com.google.android.talk
+    camera.hal1.packagelist=com.skype.raider,com.google.android.talk \
+    persist.camera.HAL3.enabled=1
 
 # Connectivity Engine support (CNE)
 PRODUCT_PACKAGES += \
@@ -135,11 +132,6 @@ PRODUCT_PACKAGES += \
 # Fingerprint
 PRODUCT_PACKAGES += \
     fingerprintd
-
-# FM
-PRODUCT_PACKAGES += \
-    FMRadio \
-    libfmjni
 
 # GPS
 PRODUCT_PACKAGES += \
@@ -171,10 +163,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/ft5x06_ts.kl:system/usr/keylayout/ft5x06_ts.kl \
     $(LOCAL_PATH)/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
     $(LOCAL_PATH)/keylayout/msm8976-tashalite-snd-card_Button_Jack.kl:system/usr/keylayout/msm8976-tashalite-snd-card_Button_Jack.kl
-
-# Keystore
-PRODUCT_PACKAGES += \
-    keystore.msm8952
 
 # Lights
 PRODUCT_PACKAGES += \
@@ -285,8 +273,7 @@ PRODUCT_PACKAGES += \
     libcurl \
     libqsap_sdk \
     libQWiFiSoftApCfg \
-    libwpa_client \
-    wcnss_service
+    libwpa_client
 
 PRODUCT_PACKAGES += \
     dhcpcd.conf \
