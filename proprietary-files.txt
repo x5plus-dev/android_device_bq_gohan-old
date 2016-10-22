@@ -369,6 +369,7 @@ vendor/lib/libdrmfs.so
 vendor/lib/libdrmtime.so
 vendor/lib/libGPreqcancel.so
 vendor/lib/libGPreqcancel_svc.so
+vendor/lib/libprdrmdecrypt.so
 vendor/lib/libqisl.so
 vendor/lib/libQSEEComAPI.so
 vendor/lib/librpmb.so
@@ -558,11 +559,12 @@ vendor/lib/libmm-dspp-utils.so
 vendor/lib/libmm-qdcm-diag.so
 vendor/lib/libmm-qdcm.so
 
-# QCOM Crypto
+# Crypto
 lib/libcryptfs_hw.so
-
-# QCOM Power
-lib/hw/power.qcom.so
+vendor/lib/libFIDOKeyProvisioning.so
+vendor/lib/libFidoCrypto.so
+vendor/lib/libFidoCryptoJNI.so
+vendor/lib/libFidoSuiJNI.so
 
 # QMI
 bin/irsc_util
@@ -652,7 +654,6 @@ vendor/lib/libvoice-svc.so
 
 # Sensors
 bin/sensors.qcom
-lib/hw/sensors.msm8952.so
 vendor/lib/hw/activity_recognition.msm8952.so
 vendor/lib/libasn1cper.so
 vendor/lib/libasn1crt.so
@@ -688,4 +689,3 @@ vendor/lib/libTimeService.so
 
 # WiFi
 bin/cnss-daemon
-bin/wcnss_service

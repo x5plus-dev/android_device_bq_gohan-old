@@ -341,6 +341,10 @@ service rmt_storage /system/bin/rmt_storage
     class core
     user root
 
+service tftp_server /system/bin/tftp_server
+    class main
+    user root
+
 service config_bt_addr /system/bin/btnvtool -O
     class core
     user bluetooth
@@ -369,6 +373,12 @@ service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
     disabled
     oneshot
 
+on property:bluetooth.hciattach=true
+    start hciattach
+
+on property:bluetooth.hciattach=false
+    setprop bluetooth.status off
+
 service bridgemgrd /system/bin/bridgemgrd
     class late_start
     user radio
@@ -381,12 +391,6 @@ service port-bridge /system/bin/port-bridge /dev/mhi_pipe_32 /dev/ttyGS0
     group radio system inet
     disabled
     oneshot
-
-on property:bluetooth.hciattach=true
-    start hciattach
-
-on property:bluetooth.hciattach=false
-    setprop bluetooth.status off
 
 # FM
 on property:hw.fm.init=0
@@ -484,6 +488,9 @@ service iprenew_p2p /system/bin/dhcpcd -n
     class late_start
     disabled
     oneshot
+
+service cnss-daemon /system/bin/cnss-daemon -n -l
+    class late_start
 
 service dhcpcd_bt-pan /system/bin/dhcpcd -BKLG
     class late_start
@@ -592,6 +599,39 @@ service audiod /system/bin/audiod
    user system
    group system
 
+service imsqmidaemon /system/bin/imsqmidaemon
+    class main
+    user system
+    socket ims_qmid stream 0660 system radio
+    group radio net_raw log diag
+
+service imsdatadaemon /system/bin/imsdatadaemon
+    class main
+    user system
+    socket ims_datad stream 0660 system radio
+    group system wifi radio inet net_raw log diag net_admin
+    disabled
+
+on property:sys.ims.QMI_DAEMON_STATUS=1
+    start imsdatadaemon
+
+service ims_rtp_daemon /system/bin/ims_rtp_daemon
+    class main
+    user system
+    socket ims_rtpd stream 0660 system radio
+    group radio net_raw diag inet log
+    disabled
+
+service imscmservice /system/bin/imscmservice
+    class main
+    user system
+    group radio net_raw diag diag log
+    disabled
+
+on property:sys.ims.DATA_DAEMON_STATUS=1
+    start ims_rtp_daemon
+    start imscmservice
+
 service wcnss-service /system/bin/wcnss_service
     class late_start
     user system
@@ -623,6 +663,27 @@ service per_mgr /system/bin/pm-service
     class core
     user system
     group system net_raw
+
+service per_proxy /system/bin/pm-proxy
+    class late_start
+    user system
+    group system
+    disabled
+
+on property:init.svc.per_mgr=running
+    start per_proxy
+
+on property:sys.shutdown.requested=*
+    stop per_proxy
+
+service gx_fpd /system/bin/gx_fpd
+    class late_start
+    user system
+    group system
+
+service fingerprintd /system/bin/fingerprintd
+    class late_start
+    user system
 
 service msm_irqbal_lb /system/bin/msm_irqbalance -f /system/vendor/etc/msm_irqbalance_little_big.conf
     class core
