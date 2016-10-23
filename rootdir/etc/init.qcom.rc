@@ -316,6 +316,9 @@ on property:sys.boot_completed=1
     # CPE fw_name used by sound trigger HAL
     chown media audio /sys/kernel/wcd_cpe0/fw_name
 
+on property:persist.radio.atfwd.start=false
+    stop atfwd
+
 on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd
 
@@ -378,6 +381,24 @@ on property:bluetooth.hciattach=true
 
 on property:bluetooth.hciattach=false
     setprop bluetooth.status off
+
+service bt-dun /system/bin/dun-server /dev/smd7 /dev/rfcomm0
+    class late_start
+    user bluetooth
+    group bluetooth net_bt_admin inet
+    disabled
+    oneshot
+
+# ftmd start with powerup will cause CTS issue.
+on property:sys.ftmd=1
+    start ftmd
+
+service ftmd /system/bin/ftmdaemon
+    class late_start
+    user root
+    group bluetooth net_bt_admin misc net_bt_stack qcom_diag
+    disabled
+    oneshot
 
 service bridgemgrd /system/bin/bridgemgrd
     class late_start
@@ -525,6 +546,11 @@ service dhcpcd_bnep4 /system/bin/dhcpcd -BKLG
 on property:crypto.driver.load=1
     insmod /system/lib/modules/qce.ko
     insmod /system/lib/modules/qcedev.ko
+
+service atfwd /system/bin/ATFWD-daemon
+    class late_start
+    user system
+    group system radio
 
 service hostapd /system/bin/hostapd -dd /data/hostapd/hostapd.conf
     class late_start
