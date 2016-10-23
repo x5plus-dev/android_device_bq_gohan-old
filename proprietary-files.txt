@@ -398,15 +398,6 @@ vendor/lib/qcdrm/playready/lib/libtzplayready_customer.so
 etc/firmware/DE.o.msm8952
 etc/firmware/DE.o.msm8976
 
-# Fingerprint sensor
-bin/gx_fpd
-bin/fingerprintd
-lib/hw/fingerprint.default.so
-lib/hw/gxfingerprint.default.so
-lib/libfpservice.so
-lib/libfp_client.so
-lib/libfpnav.so
-
 # Gatekeeper
 vendor/lib/hw/gatekeeper.msm8952.so
 
