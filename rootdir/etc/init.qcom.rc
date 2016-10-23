@@ -680,10 +680,12 @@ service gx_fpd /system/bin/gx_fpd
     class late_start
     user system
     group system
+    disabled
 
 service fingerprintd /system/bin/fingerprintd
     class late_start
     user system
+    disabled
 
 service msm_irqbal_lb /system/bin/msm_irqbalance -f /system/vendor/etc/msm_irqbalance_little_big.conf
     class core

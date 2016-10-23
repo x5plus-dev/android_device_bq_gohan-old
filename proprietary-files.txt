@@ -46,6 +46,12 @@ vendor/lib/rfsa/adsp/libapps_mem_heap.so
 vendor/lib/rfsa/adsp/libdspCV_skel.so
 vendor/lib/rfsa/adsp/libfastcvadsp.so
 vendor/lib/rfsa/adsp/libfastcvadsp_skel.so
+vendor/lib/rfsa/adsp/libobjectMattingApp_skel.so
+vendor/lib/rfsa/adsp/libpanorama_skel.so
+vendor/lib/rfsa/adsp/libscveBlobDescriptor_skel.so
+vendor/lib/rfsa/adsp/libscveObjectSegmentation_skel.so
+vendor/lib/rfsa/adsp/libscveT2T_skel.so
+vendor/lib/rfsa/adsp/libscveTextReco_skel.so
 
 # Audio
 etc/firmware/tfa98xx.cnt
@@ -592,6 +598,7 @@ vendor/lib/libsmemlog.so
 -app/fastdormancy/fastdormancy.apk
 -app/QtiTelephonyService/QtiTelephonyService.apk
 -app/shutdownlistener/shutdownlistener.apk
+bin/ipacm-diag
 bin/netmgrd
 bin/qmuxd
 bin/radish
@@ -605,19 +612,21 @@ etc/permissions/qcnvitems.xml
 etc/permissions/qcrilhook.xml
 etc/permissions/telephonyservice.xml
 framework/embmslibrary.jar
--framework/ConnectivityExt.jar
 -framework/qcnvitems.jar
 -framework/qcrilhook.jar
 framework/qti-telephony-common.jar
 framework/QtiTelephonyServicelibrary.jar
 -priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
+vendor/bin/qti
 vendor/lib/libconfigdb.so
 vendor/lib/liblqe.so
 vendor/lib/libmdmdetect.so
 vendor/lib/libnetmgr.so
+vendor/lib/libqcmaputils.so
 vendor/lib/libril-qc-qmi-1.so
 vendor/lib/libril-qc-radioconfig.so
 vendor/lib/libril-qcril-hook-oem.so
+vendor/lib/libSubSystemShutdown.so
 vendor/lib/libsystem_health_mon.so
 vendor/lib/libxml.so
 vendor/qcril.db
@@ -655,9 +664,6 @@ vendor/lib/libvoice-svc.so
 # Sensors
 bin/sensors.qcom
 vendor/lib/hw/activity_recognition.msm8952.so
-vendor/lib/libasn1cper.so
-vendor/lib/libasn1crt.so
-vendor/lib/libasn1crtx.so
 vendor/lib/libsensor1.so
 vendor/lib/libsensor_reg.so
 vendor/lib/libsensor_user_cal.so
@@ -689,3 +695,49 @@ vendor/lib/libTimeService.so
 
 # WiFi
 bin/cnss-daemon
+
+# More
+bin/ATFWD-daemon
+bin/audiod
+bin/dun-server
+bin/ftmdaemon
+bin/gpsone_daemon
+bin/hal_proxy_daemon
+bin/port-bridge
+lib/libdhcpcd.so
+lib/libGLESv3.so
+lib/libipanat.so
+lib/libminui.so
+lib/libmm-omxcore.so
+lib/libnetfilter_conntrack.so
+lib/libnfnetlink.so
+lib/libOmxSwVencHevc.so
+lib/libqti_performance.so
+lib/libtinyxml.so
+lib/libwifi-hal-qcom.so
+vendor/bin/audioflacapp
+vendor/lib/libacdbmapper.so
+vendor/lib/libassetsverifier.so
+vendor/lib/libaudioalsa.so
+vendor/lib/libaudioparsers.so
+vendor/lib/libChamomilePA.so
+vendor/lib/libCommandSvc.so
+vendor/lib/libExtendedExtractor.so
+vendor/lib/libFlacSwDec.so
+vendor/lib/libHevcSwEncoder.so
+vendor/lib/libmdsprpc.so
+vendor/lib/libmmhttpstack.so
+vendor/lib/libmmiipstreammmihttp.so
+vendor/lib/libmmipstreamnetwork.so
+vendor/lib/libmmipstreamsourcehttp.so
+vendor/lib/libmmipstreamutils.so
+vendor/lib/libmmparser.so
+vendor/lib/libmmparser_lite.so
+vendor/lib/libmmsw_detail_enhancement.so
+vendor/lib/libmmsw_math.so
+vendor/lib/libmmsw_opencl.so
+vendor/lib/libmmsw_platform.so
+vendor/lib/libSampleAuthJNI.so
+vendor/lib/libscve_stub.so
+vendor/lib/libscveTextRecoPostProcessing.so
+vendor/lib/libsd_sdk_display.so
