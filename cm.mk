@@ -1,5 +1,5 @@
 #
-# Copyright 2015 The CyanogenMod Project
+# Copyright 2016 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -35,8 +35,11 @@ TARGET_VENDOR := bq
 PRODUCT_GMS_CLIENTID_BASE := android-bq
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-   TARGET_DEVICE=Aquaris_X5_Plus PRODUCT_NAME=Aquaris_X5_Plus
+    TARGET_DEVICE=Aquaris_X5_Plus PRODUCT_NAME=Aquaris_X5_Plus
 
+# Use the latest approved GMS identifiers unless running a signed build
+ifneq ($(SIGN_BUILD),true)
 PRODUCT_BUILD_PROP_OVERRIDES += \
-   BUILD_FINGERPRINT=bq/Aquaris_X5_Plus/Aquaris_X5_Plus:6.0.1/MMB29M/1472045538:user/release-keys \
-   PRIVATE_BUILD_DESC="gohan-user 6.0.1 MMB29M 1.3.0_20160824-1532 release-keys"
+    BUILD_FINGERPRINT=bq/Aquaris_X5_Plus/Aquaris_X5_Plus:6.0.1/MMB29M/1472045538:user/release-keys \
+    PRIVATE_BUILD_DESC="gohan-user 6.0.1 MMB29M 1.3.0_20160824-1532 release-keys"
+endif
