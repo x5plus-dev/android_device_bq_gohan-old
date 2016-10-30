@@ -141,11 +141,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/etc/sap.conf:system/etc/sap.conf \
     $(LOCAL_PATH)/gps/etc/xtwifi.conf:system/etc/xtwifi.conf
 
-# IPACM
-PRODUCT_PACKAGES += \
-    IPACM_cfg.xml \
-    ipacm
-
 # IRQ
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/msm_irqbalance_little_big.conf:system/vendor/etc/msm_irqbalance_little_big.conf
@@ -159,10 +154,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/ft5x06_ts.kl:system/usr/keylayout/ft5x06_ts.kl \
     $(LOCAL_PATH)/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
     $(LOCAL_PATH)/keylayout/msm8976-tashalite-snd-card_Button_Jack.kl:system/usr/keylayout/msm8976-tashalite-snd-card_Button_Jack.kl
-
-# Keymaster
-PRODUCT_PACKAGES += \
-    keystore.msm8952
 
 # Lights
 PRODUCT_PACKAGES += \
@@ -241,9 +232,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sensors/hals.conf:system/etc/sensors/hals.conf \
     $(LOCAL_PATH)/configs/sensors/sensor_def_qcomdev.conf:system/etc/sensors/sensor_def_qcomdev.conf
 
-PRODUCT_PACKAGES += \
-    sensors.msm8952
-
 # USB
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
@@ -254,7 +242,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Wifi
 PRODUCT_PACKAGES += \
     ipacm \
-    ipacm-diag \
     IPACM_cfg.xml \
     libqsap_sdk \
     libQWiFiSoftApCfg \
@@ -263,6 +250,9 @@ PRODUCT_PACKAGES += \
     dhcpcd.conf \
     wpa_supplicant \
     wpa_supplicant.conf
+
+PRODUCT_PACKAGES += \
+    wcnss_service
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/hostapd.accept:system/etc/hostapd/hostapd.accept \

@@ -73,7 +73,6 @@ vendor/lib/libmmcamera_cac3_lib.so
 vendor/lib/libmmcamera_chromaflash_lib.so
 vendor/lib/libmmcamera_csidtg.so
 vendor/lib/libmmcamera_dcrf_lib.so
-vendor/lib/libmmcamera_dw9761b_eeprom.so
 vendor/lib/libmmcamera_eeprom_util.so
 vendor/lib/libmmcamera_eztune_module.so
 vendor/lib/libmmcamera_faceproc.so
@@ -118,24 +117,19 @@ vendor/lib/libmmcamera_isp_sce40.so
 vendor/lib/libmmcamera_isp_sub_module.so
 vendor/lib/libmmcamera_isp_wb40.so
 vendor/lib/libmmcamera_le2464c_eeprom.so
-vendor/lib/libmmcamera_le2464c_master_eeprom.so
 vendor/lib/libmmcamera_llvd.so
 vendor/lib/libmmcamera_mt9m114.so
-vendor/lib/libmmcamera_onsemi_cat24c16_eeprom.so
-vendor/lib/libmmcamera_onsemi_cat24c32_eeprom.so
 vendor/lib/libmmcamera_optizoom_lib.so
+vendor/lib/libmmcamera_ov5645.so
 vendor/lib/libmmcamera_pdaf.so
 vendor/lib/libmmcamera_pdafcamif.so
 vendor/lib/libmmcamera_ppbase_module.so
 vendor/lib/libmmcamera_semco_cat24c64_eeprom.so
 vendor/lib/libmmcamera_sunny_8865_eeprom.so
 vendor/lib/libmmcamera_sunny_imx219_d8n03d_eeprom.so
-vendor/lib/libmmcamera_sunny_q13v06k_eeprom.so
-vendor/lib/libmmcamera_sunny_q5v41b_eeprom.so
 vendor/lib/libmmcamera_thread_services.so
 vendor/lib/libmmcamera_tintless_algo.so
 vendor/lib/libmmcamera_tintless_bg_pca_algo.so
-vendor/lib/libmmcamera_truly_cma481_eeprom.so
 vendor/lib/libmmcamera_truly_imx219_cmb104_eeprom.so
 vendor/lib/libmmcamera_truly_imx298_cmb087qr_eeprom.so
 vendor/lib/libmmcamera_tuning.so
@@ -145,7 +139,6 @@ vendor/lib/libmmcamera_vpu_module.so
 vendor/lib/libmmjpeg.so
 vendor/lib/libmmqjpeg_codec.so
 vendor/lib/libmmqjpegdma.so
-vendor/lib/libois_lc898122.so
 vendor/lib/liboptizoom.so
 vendor/lib/libqomx_jpegdec.so
 vendor/lib/libqomx_jpegenc.so
@@ -154,19 +147,10 @@ vendor/lib/libseemore.so
 vendor/lib/libSonyIMX298PdafLibrary.so
 vendor/lib/libts_detected_face_hal.so
 vendor/lib/libts_face_beautify_hal.so
+vendor/lib/libubifocus.so
 
 # Camera actuators
-vendor/lib/libactuator_ad5816g.so
-vendor/lib/libactuator_ad5823.so
-vendor/lib/libactuator_bu64244gwz.so
-vendor/lib/libactuator_bu64297.so
-vendor/lib/libactuator_dw9714.so
-vendor/lib/libactuator_dw9716.so
-vendor/lib/libactuator_dw9761b.so
 vendor/lib/libactuator_dw9800w_cmb087qr.so
-vendor/lib/libactuator_lc898122.so
-vendor/lib/libactuator_lc898212xd.so
-vendor/lib/libactuator_rohm_bu64243gwz.so
 
 # Camera chromatix
 vendor/lib/libchromatix_csidtg_common.so
@@ -348,6 +332,8 @@ vendor/lib/libdrmfs.so
 vendor/lib/libdrmtime.so
 vendor/lib/libGPreqcancel.so
 vendor/lib/libGPreqcancel_svc.so
+vendor/lib/libmm-hdcpmgr.so
+vendor/lib/libmmQSM.so
 vendor/lib/libqisl.so
 vendor/lib/libQSEEComAPI.so
 vendor/lib/lib-sec-disp.so
@@ -369,7 +355,6 @@ etc/firmware/DE.o.msm8976
 vendor/lib/hw/gatekeeper.msm8952.so
 
 # GPS
-bin/garden_app
 bin/loc_launcher
 bin/lowi-server
 bin/xtwifi-client
@@ -378,15 +363,12 @@ etc/permissions/com.qti.location.sdk.xml
 etc/permissions/com.qualcomm.location.xml
 framework/com.qti.location.sdk.jar
 -lib/libloc_api_v02.so
--lib/libloc_ds_api.so
+lib/libloc_ds_api.so
 -priv-app/com.qualcomm.location/com.qualcomm.location.apk
 -priv-app/xtra_t_app/xtra_t_app.apk
 vendor/bin/slim_daemon
 vendor/lib/hw/flp.default.so
 vendor/lib/libalarmservice_jni.so
-vendor/lib/libasn1cper.so
-vendor/lib/libasn1crt.so
-vendor/lib/libasn1crtx.so
 vendor/lib/libdataitems.so
 vendor/lib/libflp.so
 vendor/lib/libgdtap.so
@@ -401,6 +383,7 @@ vendor/lib/liblowi_client.so
 vendor/lib/liblowi_wifihal.so
 vendor/lib/liblowi_wifihal_nl.so
 vendor/lib/libquipc_os_api.so
+vendor/lib/libslimclient.so
 vendor/lib/libulp2.so
 vendor/lib/libxt_native.so
 vendor/lib/libxtadapter.so
@@ -414,22 +397,23 @@ vendor/lib/egl/libGLESv2_adreno.so
 vendor/lib/egl/libQTapGLES.so
 vendor/lib/egl/libq3dtools_adreno.so
 vendor/lib/egl/libq3dtools_esx.so
-vendor/lib/libC2D2.so
-vendor/lib/libCB.so
-vendor/lib/libOpenCL.so
-vendor/lib/libRSDriver_adreno.so
 vendor/lib/libadreno_utils.so
 vendor/lib/libbccQTI.so
+vendor/lib/libC2D2.so
 vendor/lib/libc2d30-a5xx.so
 vendor/lib/libc2d30_bltlib.so
+vendor/lib/libCB.so
 vendor/lib/libgsl.so
 vendor/lib/libllvm-glnext.so
 vendor/lib/libllvm-qcom.so
 vendor/lib/libmmQSM.so
 vendor/lib/libmm-disp-apis.so
 vendor/lib/libmm-qdcm.so
+vendor/lib/libOpenCL.so
 vendor/lib/librs_adreno.so
 vendor/lib/librs_adreno_sha1.so
+vendor/lib/libRSDriver_adreno.so
+vendor/lib/libscale.so
 vendor/lib/libsd_sdk_display.so
 
 # Graphics firmware
@@ -495,6 +479,7 @@ vendor/firmware/libpn547_fw.so
 # Perf
 bin/msm_irqbalance
 vendor/bin/perfd
+vendor/lib/libqc-opt.so
 vendor/lib/libqti-at.so
 vendor/lib/libqti-gt.so
 vendor/lib/libqti-perfd-client.so
@@ -606,7 +591,11 @@ vendor/lib/libvoice-svc.so
 
 # Sensors
 bin/sensors.qcom
+lib/hw/sensors.msm8952.so
 vendor/lib/hw/activity_recognition.msm8952.so
+vendor/lib/libasn1cper.so
+vendor/lib/libasn1crt.so
+vendor/lib/libasn1crtx.so
 vendor/lib/libsensor1.so
 vendor/lib/libsensor_reg.so
 vendor/lib/libsensor_user_cal.so
@@ -626,4 +615,4 @@ vendor/lib/libTimeService.so
 
 # Wifi
 bin/cnss-daemon
-bin/wcnss_service
+lib/libwcnss_qmi.so
