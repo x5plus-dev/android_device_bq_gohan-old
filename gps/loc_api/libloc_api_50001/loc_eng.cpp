@@ -90,6 +90,8 @@ using namespace loc_core;
 
 boolean configAlreadyRead = false;
 unsigned int agpsStatus = 0;
+loc_gps_cfg_s_type gps_conf;
+loc_sap_cfg_s_type sap_conf;
 
 /* Parameter spec table */
 static const loc_param_s_type gps_conf_table[] =
@@ -498,7 +500,7 @@ struct LocEngSuplMode : public LocMsg {
         locallog();
     }
     inline virtual void proc() const {
-        mUlp->setCapabilities(ContextBase::getCarrierCapabilities());
+        mUlp->setCapabilities(getCarrierCapabilities());
     }
     inline  void locallog() const {
     }
@@ -900,7 +902,6 @@ void LocEngReportNmea::proc() const {
     struct timeval tv;
     gettimeofday(&tv, (struct timezone *) NULL);
     int64_t now = tv.tv_sec * 1000LL + tv.tv_usec / 1000;
-    CALLBACK_LOG_CALLFLOW("nmea_cb", %d, mLen);
 
     if (locEng->nmea_cb != NULL)
         locEng->nmea_cb(now, mNmea, mLen);
@@ -1681,6 +1682,24 @@ inline void LocEngReportGpsMeasurement::log() const {
       ret;                                                        \
   }
 #define INIT_CHECK(ctx, ret) STATE_CHECK(ctx, "instance not initialized", ret)
+
+uint32_t getCarrierCapabilities() {
+    #define carrierMSA (uint32_t)0x2
+    #define carrierMSB (uint32_t)0x1
+    #define gpsConfMSA (uint32_t)0x4
+    #define gpsConfMSB (uint32_t)0x2
+    uint32_t capabilities = gps_conf.CAPABILITIES;
+    if ((gps_conf.SUPL_MODE & carrierMSA) != carrierMSA) {
+        capabilities &= ~gpsConfMSA;
+    }
+    if ((gps_conf.SUPL_MODE & carrierMSB) != carrierMSB) {
+        capabilities &= ~gpsConfMSB;
+    }
+
+    LOC_LOGV("getCarrierCapabilities: CAPABILITIES %x, SUPL_MODE %x, carrier capabilities %x",
+             gps_conf.CAPABILITIES, gps_conf.SUPL_MODE, capabilities);
+    return capabilities;
+}
 
 /*===========================================================================
 FUNCTION    loc_eng_init
