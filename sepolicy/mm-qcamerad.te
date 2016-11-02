@@ -1,0 +1,5 @@
+allow mm-qcamerad mpctl_socket:dir search;
+allow mm-qcamerad mpctl_socket:sock_file write;
+allow mm-qcamerad perfd:unix_stream_socket connectto;
+
+allow mm-qcamerad system_data_file:dir { write add_name };

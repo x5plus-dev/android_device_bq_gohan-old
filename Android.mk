@@ -44,8 +44,7 @@ $(ADSP_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 ALL_DEFAULT_INSTALLED_MODULES += $(ADSP_SYMLINKS)
 
 CMN_IMAGES := \
-    cmnlib.b00 cmnlib.b01 cmnlib.b02 cmnlib.b03 cmnlib.b04 cmnlib.b05 cmnlib.mdt \
-    cmnlib64.b00 cmnlib64.b01 cmnlib64.b02 cmnlib64.b03 cmnlib64.b04 cmnlib64.b05 cmnlib64.mdt
+    cmnlib.b00 cmnlib.b01 cmnlib.b02 cmnlib.b03 cmnlib.b04 cmnlib.b05 cmnlib.mdt
 
 CMN_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(CMN_IMAGES)))
 $(CMN_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
@@ -150,7 +149,7 @@ $(MODEM_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 ALL_DEFAULT_INSTALLED_MODULES += $(MODEM_SYMLINKS)
 
 QDSP6M_IMAGES := \
-    qdsp6m.qdp
+    qdsp6m.qdb
 
 QDSP6M_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(QDSP6M_IMAGES)))
 $(QDSP6M_SYMLINKS): $(LOCAL_INSTALLED_MODULE)

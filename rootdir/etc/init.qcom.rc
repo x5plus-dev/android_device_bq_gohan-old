@@ -62,6 +62,12 @@ on early-boot
     chown root audio /sys/kernel/boot_adsp/boot
     exec u:r:qti_init_shell:s0 -- /init.qcom.early_boot.sh
 
+    # SSR Setup
+    write /sys/bus/msm_subsys/devices/subsys0/restart_level "related"
+    write /sys/bus/msm_subsys/devices/subsys1/restart_level "related"
+    write /sys/bus/msm_subsys/devices/subsys2/restart_level "related"
+    write /sys/bus/msm_subsys/devices/subsys3/restart_level "related"
+
 on boot
     chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
@@ -267,6 +273,8 @@ on post-fs-data
     mkdir /data/camera 0770 media camera
 
     # Create PERFD deamon related dirs
+    mkdir /data/misc/perfd 0755 root system
+    chmod 2755 /data/misc/perfd
     mkdir /data/system/perfd 0770 root system
     chmod 2770 /data/system/perfd
 
@@ -330,8 +338,9 @@ on post-fs-data
 service perfd /system/vendor/bin/perfd
     class main
     user root
-    disabled
     socket perfd seqpacket 0666 root system
+    disabled
+    writepid /dev/cpuset/system-background/tasks
 
 on property:persist.sys.ssr.enable_ramdumps=0
     write /sys/module/subsystem_restart/parameters/enable_ramdumps 0
@@ -342,6 +351,9 @@ on property:sys.boot_completed=1
 
     # CPE fw_name used by sound trigger HAL
     chown media audio /sys/kernel/wcd_cpe0/fw_name
+
+on property:persist.radio.atfwd.start=false
+    stop atfwd
 
 # Corefile limit
 on property:persist.debug.trace=1
@@ -364,7 +376,7 @@ service cnd /system/bin/cnd
     socket cnd stream 660 root inet
 
 service dpmd /system/bin/dpmd
-    class late_start
+    class main
     socket dpmd stream 660 root system
 
 service irsc_util /system/bin/irsc_util "/etc/sec_config"
@@ -377,8 +389,8 @@ service rmt_storage /system/bin/rmt_storage
     user root
 
 service tftp_server /system/bin/tftp_server
-   class main
-   user root
+    class main
+    user root
 
 service config_bt_addr /system/bin/btnvtool -O
     class core
@@ -403,6 +415,37 @@ on property:bluetooth.hciattach=true
 
 on property:bluetooth.hciattach=false
     setprop bluetooth.status off
+
+service bt-dun /system/bin/dun-server /dev/smd7 /dev/rfcomm0
+    class late_start
+    user bluetooth
+    group bluetooth net_bt_admin inet
+    disabled
+    oneshot
+
+# ftmd start with powerup will cause CTS issue.
+on property:sys.ftmd=1
+    start ftmd
+
+service ftmd /system/bin/ftmdaemon
+    class late_start
+    user root
+    group bluetooth net_bt_admin misc net_bt_stack qcom_diag
+    disabled
+    oneshot
+
+service bridgemgrd /system/bin/bridgemgrd
+    class late_start
+    user radio
+    group radio qcom_diag
+    disabled
+
+service port-bridge /system/bin/port-bridge /dev/mhi_pipe_32 /dev/ttyGS0
+    class main
+    user radio system
+    group radio system inet
+    disabled
+    oneshot
 
 # FM
 on property:hw.fm.init=0
@@ -441,6 +484,10 @@ service sensors /system/bin/sensors.qcom
     user root
     group root
     disabled
+
+on property:ro.use_data_netmgrd=false
+    # netmgr not supported on specific target
+    stop netmgrd
 
 # Adjust socket buffer to enlarge TCP receive window for high bandwidth
 # but only if ro.data.large_tcp_window_size property is set.
@@ -500,9 +547,6 @@ service iprenew_p2p /system/bin/dhcpcd -n
     disabled
     oneshot
 
-service cnss-daemon /system/bin/cnss-daemon -n -l
-    class late_start
-
 service dhcpcd_bt-pan /system/bin/dhcpcd -BKLG
     class late_start
     disabled
@@ -539,8 +583,13 @@ service loc_launcher /system/bin/loc_launcher
     group gps inet net_raw qcom_diag net_admin wifi
 
 on property:crypto.driver.load=1
-     insmod /system/lib/modules/qce.ko
-     insmod /system/lib/modules/qcedev.ko
+    insmod /system/lib/modules/qce.ko
+    insmod /system/lib/modules/qcedev.ko
+
+service atfwd /system/bin/ATFWD-daemon
+    class late_start
+    user system
+    group system radio
 
 service qcom-sh /system/bin/sh /init.qcom.sh
     class late_start
@@ -576,7 +625,7 @@ service ril-daemon2 /system/bin/rild -c 2
 
 service charger /charger
     class charger
-    group graphics
+    group system graphics
     seclabel u:r:healthd:s0
 
 service hvdcp_opti /system/bin/hvdcp_opti
@@ -589,6 +638,7 @@ service msm_irqbal_lb /system/bin/msm_irqbalance -f /system/vendor/etc/msm_irqba
     user root
     group root
     disabled
+    writepid /dev/cpuset/system-background/tasks
 
 service RIDL /system/vendor/bin/RIDLClient.exe
     class late_start
