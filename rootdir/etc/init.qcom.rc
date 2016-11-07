@@ -25,6 +25,7 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
+import init.qcom.power.rc
 import init.qcom.usb.rc
 import init.target.rc
 
@@ -60,7 +61,6 @@ on early-boot
     write /sys/kernel/codec_type/boot ${persist.sys.external}
     write /sys/kernel/boot_adsp/boot 1
     chown root audio /sys/kernel/boot_adsp/boot
-    exec u:r:qti_init_shell:s0 -- /init.qcom.early_boot.sh
 
     # SSR Setup
     write /sys/bus/msm_subsys/devices/subsys0/restart_level "related"
@@ -105,6 +105,8 @@ on boot
     chmod 2770 /dev/socket/qmux_bluetooth
     mkdir /dev/socket/qmux_gps 0770 gps gps
     chmod 2770 /dev/socket/qmux_gps
+    mkdir /dev/socket/qmux_nfc 0770 nfc nfc
+    chmod 2770 /dev/socket/qmux_nfc
 
     mkdir /persist/drm 0770 system system
     mkdir /persist/misc 0770 system system
@@ -595,15 +597,6 @@ service qcom-sh /system/bin/sh /init.qcom.sh
     class late_start
     user root
     oneshot
-
-service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
-    class late_start
-    user root
-    disabled
-    oneshot
-
-on property:sys.boot_completed=1
-    start qcom-post-boot
 
 service hostapd /system/bin/hostapd -dd /data/hostapd/hostapd.conf
     class late_start
