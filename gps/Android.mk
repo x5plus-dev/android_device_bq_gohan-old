@@ -16,6 +16,6 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifneq ($(filter gohan,$(TARGET_DEVICE)),)
+ifeq ($(TARGET_DEVICE),gohan)
 include $(call all-subdir-makefiles,$(LOCAL_PATH))
 endif
