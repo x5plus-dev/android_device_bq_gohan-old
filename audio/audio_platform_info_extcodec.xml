@@ -56,4 +56,3 @@
         <feature name="NATIVE_AUDIO_44.1" codec_support="1"/>
     </native_configs>
 </audio_platform_info>
-

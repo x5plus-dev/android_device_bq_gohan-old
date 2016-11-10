@@ -1,0 +1,2 @@
+# FRP
+/dev/block/bootdevice/by-name/config              u:object_r:frp_block_device:s0
