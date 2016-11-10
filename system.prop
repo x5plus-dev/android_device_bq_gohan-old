@@ -41,6 +41,9 @@ ro.use_data_netmgrd=true
 persist.data.netmgrd.qos.enable=true
 persist.data.mode=concurrent
 
+# Dex2oat threads for faster app installation
+ro.sys.fw.dex2oat_thread_count=4
+
 # Display
 debug.sf.hw=1
 debug.egl.hw=1
