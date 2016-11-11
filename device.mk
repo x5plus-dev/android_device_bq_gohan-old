@@ -149,9 +149,7 @@ PRODUCT_PACKAGES += \
     flp.conf \
     gps.conf \
     izat.conf \
-    lowi.conf \
-    sap.conf \
-    xtwifi.conf
+    sap.conf
 
 # IPACM
 PRODUCT_PACKAGES += \
@@ -246,6 +244,9 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sensors/hals.conf:system/etc/sensors/hals.conf \
     $(LOCAL_PATH)/configs/sensors/sensor_def_qcomdev.conf:system/etc/sensors/sensor_def_qcomdev.conf
 
+PRODUCT_PACKAGES += \
+    sensors.msm8952
+
 # USB
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
@@ -264,6 +265,9 @@ PRODUCT_PACKAGES += \
     WCNSS_wlan_dictionary.dat
 
 PRODUCT_PACKAGES += \
+    wcnss_service
+
+PRODUCT_PACKAGES += \
     dhcpcd.conf \
     hostapd \
     wpa_supplicant \
@@ -278,4 +282,5 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini
 
 PRODUCT_PROPERTY_OVERRIDES += \
+    ro.disableWifiApFirmwareReload=true \
     wifi.interface=wlan0
