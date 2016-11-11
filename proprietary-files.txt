@@ -36,10 +36,7 @@ vendor/lib/libacdbrtac.so
 vendor/lib/libadiertac.so
 vendor/lib/libadm.so
 vendor/lib/libaudcal.so
-vendor/lib/libaudioparsers.so
 vendor/lib/libdrc.so
-vendor/lib/libFlacSwDec.so
--vendor/lib/libqct_resampler.so
 vendor/lib/libhwdaphal.so
 vendor/lib/libLifevibes_lvac.so
 vendor/lib/libsurround_3mic_proc.so
@@ -636,3 +633,6 @@ vendor/lib/libthermalioctl.so
 bin/time_daemon
 -vendor/lib/libtime_genoff.so
 vendor/lib/libTimeService.so
+
+# Wifi
+bin/wcnss_service

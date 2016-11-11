@@ -376,7 +376,6 @@ on property:bluetooth.isEnabled=true
 on property:vold.decrypt=trigger_restart_framework
     start config_bt_addr
     start config_bluetooth
-    start wcnss-service
 
 service cnd /system/bin/cnd
     class late_start
