@@ -18,11 +18,13 @@ audio.offload.gapless.enabled=true
 audio.offload.multiple.enabled=false
 audio.safx.pbe.enabled=true
 audio.pp.asphere.enabled=false
-audio.ds1.metainfo.key=273
 voice.playback.conc.disabled=true
 voice.record.conc.disabled=false
 voice.voip.conc.disabled=false
 voice.conc.fallbackpath=deep-buffer
+
+audio.ds1.metainfo.key=273
+dmid=2162221841
 
 # Bluetooth
 qcom.bluetooth.soc=smd
