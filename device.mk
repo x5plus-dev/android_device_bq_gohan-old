@@ -255,9 +255,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Wifi
 PRODUCT_PACKAGES += \
+    libcurl \
     libqsap_sdk \
     libQWiFiSoftApCfg \
-    libwpa_client \
     wcnss_service
 
 PRODUCT_PACKAGES += \

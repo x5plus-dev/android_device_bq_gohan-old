@@ -634,5 +634,5 @@ bin/time_daemon
 -vendor/lib/libtime_genoff.so
 vendor/lib/libTimeService.so
 
-# WCNSS (from paella)
-lib/libwcnss_qmi.so|e86617afc3536c11e3427f73a884b244fe568e7f
+# WCNSS
+bin/wcnss_service
