@@ -52,6 +52,10 @@ on post-fs-data
     mkdir /data/misc/dts 0770 media audio
     mkdir /data/misc/audio_pp 0771 media audio
 
+    # Tap To Wake
+    chown root system /sys/devices/soc.0/7af6000.i2c/i2c-6/6-0020/input/input0/wake_gesture
+    chmod 0660 /sys/devices/soc.0/7af6000.i2c/i2c-6/6-0020/input/input0/wake_gesture
+
 # Start camera server as daemon
 service qcamerasvr /system/bin/mm-qcamera-daemon
     class late_start
@@ -121,6 +125,10 @@ on boot
     chown system system /dev/pn547
     chmod 0644 /dev/vfsspi
     chown system system /dev/vfsspi
+
+    # Goodix Fingerprint
+    chmod 0644 /dev/goodix_fp
+    chown system system /dev/goodix_fp
 
 service ppd /system/vendor/bin/mm-pp-daemon
     class late_start
@@ -203,3 +211,12 @@ on property:init.svc.per_mgr=running
 
 on property:sys.shutdown.requested=*
     stop per_proxy
+
+service gx_fpd /system/bin/gx_fpd
+    class late_start
+    user system
+    group system
+
+service fingerprintd /system/bin/fingerprintd
+    class late_start
+    user system

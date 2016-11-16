@@ -1,0 +1,6 @@
+allow gx_fpd tee_device:chr_file { read write ioctl open };
+
+allow gx_fpd gx_fpd_data_file:dir create_dir_perms;
+allow gx_fpd gx_fpd_data_file:sock_file { create unlink };
+
+allow gx_fpd fpc_sysfs:file rw_file_perms;

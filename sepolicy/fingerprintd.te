@@ -1,0 +1,4 @@
+allow fingerprintd tee_device:chr_file { read write ioctl open };
+
+allow fingerprintd fingerprintd_data_file:dir create_dir_perms;
+allow fingerprintd fingerprintd_data_file:sock_file { create unlink };

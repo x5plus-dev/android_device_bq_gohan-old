@@ -373,11 +373,13 @@ vendor/lib/libwvdrm_L3.so
 vendor/lib/libwvm.so
 vendor/lib/libWVStreamControlAPI_L3.so
 
-# Firmwares
-etc/firmware/synaptics_firmware_booyi.img
-etc/firmware/synaptics_firmware_truly.img
-etc/firmware/DE.o.msm8952
-etc/firmware/DE.o.msm8976
+# Fingerprint sensor
+bin/gx_fpd
+lib/hw/fingerprint.default.so
+lib/hw/gxfingerprint.default.so
+lib/libfp_client.so
+lib/libfpnav.so
+lib/libfpservice.so
 
 # FM
 bin/fmconfig
@@ -519,6 +521,12 @@ vendor/lib/libmm-als.so
 vendor/lib/libmm-dspp-utils.so
 vendor/lib/libmm-qdcm-diag.so
 vendor/lib/libmm-qdcm.so
+
+# Proprietary firmware
+etc/firmware/synaptics_firmware_booyi.img
+etc/firmware/synaptics_firmware_truly.img
+etc/firmware/DE.o.msm8952
+etc/firmware/DE.o.msm8976
 
 # QMI
 bin/irsc_util
