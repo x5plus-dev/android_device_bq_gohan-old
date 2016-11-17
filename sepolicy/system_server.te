@@ -1,1 +1,4 @@
+binder_call(system_server, gx_fpd_service)
 allow system_server gx_fpd_device:chr_file rw_file_perms;
+allow system_server gx_fpd_data_file:dir { r_dir_perms remove_name rmdir relabelto write };
+allow system_server gx_fpd_data_file:file { getattr unlink };

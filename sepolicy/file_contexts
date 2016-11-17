@@ -1,5 +1,5 @@
 # Fingerprint
-/data/system/users/[0-9]+/fpdata(/.*)?          u:object_r:fingerprintd_data_file:s0
+/system/bin/gx_fpd                              u:object_r:gx_fpd_exec:s0
 /data/system/fingerprint(/.*)?                  u:object_r:gx_fpd_data_file:s0
 /dev/gf66xx-spi                                 u:object_r:gx_fpd_device:s0
 /dev/goodix_fp*                                 u:object_r:gx_fpd_device:s0
