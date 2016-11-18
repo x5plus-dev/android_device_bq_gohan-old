@@ -78,7 +78,8 @@ PRODUCT_PACKAGES += \
     audio.a2dp.default \
     audio.primary.msm8952 \
     audio.r_submix.default \
-    audio.usb.default
+    audio.usb.default \
+    libaudio-resampler
 
 PRODUCT_PACKAGES += \
     libqcompostprocbundle \
