@@ -256,9 +256,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Wifi
 PRODUCT_PACKAGES += \
-    libcurl \
     libqsap_sdk \
     libQWiFiSoftApCfg \
+    libwpa_client \
     wcnss_service
 
 PRODUCT_PACKAGES += \
@@ -281,5 +281,4 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/WCNSS_wlan_dictionary.dat:system/etc/firmware/wlan/prima/WCNSS_wlan_dictionary.dat
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.disableWifiApFirmwareReload=true \
-    wifi.interface=wlan0
+    ro.disableWifiApFirmwareReload=true
