@@ -373,9 +373,10 @@ vendor/lib/libwvdrm_L3.so
 vendor/lib/libwvm.so
 vendor/lib/libWVStreamControlAPI_L3.so
 
-# Firmwares
+# Firmware
 etc/firmware/synaptics_firmware_booyi.img
-etc/firmware/synaptics_firmware_truly.img
+etc/firmware/synaptics_firmware_truly_auo.img
+etc/firmware/synaptics_firmware_truly_lg.img
 etc/firmware/DE.o.msm8952
 etc/firmware/DE.o.msm8976
 

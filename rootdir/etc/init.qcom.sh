@@ -26,8 +26,10 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
+export PATH=/system/bin
 chown -h system:system /sys/devices/soc.0/qpnp-smbcharger-*/BatteryMaxCurrent
 
+# Set platform variables
 target=`getprop ro.board.platform`
 if [ -f /sys/devices/soc0/soc_id ]; then
     platformid=`cat /sys/devices/soc0/soc_id`
@@ -62,13 +64,6 @@ start_msm_irqbalance_8952()
 			"266" | "274" | "277" | "278")
 			start msm_irqbal_lb;;
 		esac
-	fi
-}
-
-start_msm_irqbalance()
-{
-	if [ -f /system/bin/msm_irqbalance ]; then
-		start msm_irqbalance
 	fi
 }
 

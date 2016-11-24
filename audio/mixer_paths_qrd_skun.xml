@@ -1824,22 +1824,6 @@
         <path name="adc3" />
     </path>
 
-    <path name="three-mic">
-        <ctl name="AIF1_CAP Mixer SLIM TX5" value="1"/>
-        <ctl name="AIF1_CAP Mixer SLIM TX6" value="1" />
-        <ctl name="AIF1_CAP Mixer SLIM TX7" value="1"/>
-        <ctl name="SLIM_0_TX Channels" value="Three" />
-        <ctl name="SLIM TX5 MUX" value="DEC5" />
-        <ctl name="ADC MUX5" value="DMIC" />
-        <ctl name="DMIC MUX5" value="DMIC0" />
-        <ctl name="SLIM TX6 MUX" value="DEC6" />
-        <ctl name="ADC MUX6" value="DMIC" />
-        <ctl name="DMIC MUX6" value="DMIC2" />
-        <ctl name="SLIM TX7 MUX" value="DEC7" />
-        <ctl name="ADC MUX7" value="DMIC" />
-        <ctl name="DMIC MUX7" value="DMIC4" />
-    </path>
-
     <path name="handset-mic-db">
         <path name="adc6" />
     </path>

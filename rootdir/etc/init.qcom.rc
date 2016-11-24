@@ -96,6 +96,31 @@ on boot
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/device/extldo
     chmod 0660 /sys/class/rfkill/rfkill0/device/extldo
 
+    # Set graphic node permissions
+    chown system graphics /sys/class/graphics/fb0/mdp/bw_mode_bitmap
+    chown system graphics /sys/class/graphics/fb0/idle_time
+    chown system graphics /sys/class/graphics/fb0/dynamic_fps
+    chown system graphics /sys/class/graphics/fb0/dyn_pu
+    chown system graphics /sys/class/graphics/fb0/modes
+    chown system graphics /sys/class/graphics/fb0/mode
+    chmod 0664 /sys/class/graphics/fb0/mdp/bw_mode_bitmap
+    chmod 0664 /sys/class/graphics/fb0/idle_time
+    chmod 0664 /sys/class/graphics/fb0/dynamic_fps
+    chmod 0664 /sys/class/graphics/fb0/dyn_pu
+    chmod 0664 /sys/class/graphics/fb0/modes
+    chmod 0664 /sys/class/graphics/fb0/mode
+
+    # Secure touch permissions
+    chmod 0660 /sys/devices/soc.0/78b7000.i2c/i2c-3/3-0020/input/input0/secure_touch_enable
+    chmod 0440 /sys/devices/soc.0/78b7000.i2c/i2c-3/3-0020/input/input0/secure_touch
+    chmod 0660 /sys/devices/soc.0/78b8000.i2c/i2c-4/4-0020/input/input0/secure_touch_enable
+    chmod 0440 /sys/devices/soc.0/78b8000.i2c/i2c-4/4-0020/input/input0/secure_touch
+    chown system drmrpc /sys/devices/soc.0/78b7000.i2c/i2c-3/3-0020/input/input0/secure_touch_enable
+    chown system drmrpc /sys/devices/soc.0/78b7000.i2c/i2c-3/3-0020/input/input0/secure_touch
+    chown system drmrpc /sys/devices/soc.0/78b8000.i2c/i2c-4/4-0020/input/input0/secure_touch_enable
+    chown system drmrpc /sys/devices/soc.0/78b8000.i2c/i2c-4/4-0020/input/input0/secure_touch
+    write /proc/sys/kernel/sched_boost 1
+
     # Create QMUX deamon socket area
     mkdir /dev/socket/qmux_radio 0770 radio radio
     chmod 2770 /dev/socket/qmux_radio
@@ -121,6 +146,20 @@ on boot
     chmod 0755 /system/bin/ip
 
     chmod 0444 /sys/devices/platform/msm_hsusb/gadget/usb_state
+
+    # Define TCP buffer sizes for various networks
+    # ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax,
+    setprop net.tcp.buffersize.wifi    524288,2097152,4194304,262144,524288,1048576
+    setprop net.tcp.buffersize.default 4096,87380,524288,4096,16384,110208
+    setprop net.tcp.buffersize.lte     2097152,4194304,8388608,262144,524288,1048576
+    setprop net.tcp.buffersize.umts    4094,87380,110208,4096,16384,110208
+    setprop net.tcp.buffersize.hspa    4094,87380,1220608,4096,16384,1220608
+    setprop net.tcp.buffersize.hsupa   4094,87380,1220608,4096,16384,1220608
+    setprop net.tcp.buffersize.hsdpa   4094,87380,1220608,4096,16384,1220608
+    setprop net.tcp.buffersize.hspap   4094,87380,1220608,4096,16384,1220608
+    setprop net.tcp.buffersize.edge    4093,26280,35040,4096,16384,35040
+    setprop net.tcp.buffersize.gprs    4092,8760,11680,4096,8760,11680
+    setprop net.tcp.buffersize.evdo    4094,87380,524288,4096,16384,262144
 
 #   Assign TCP buffer thresholds to be ceiling value of technology maximums
 #   Increased technology maximums should be reflected here.
@@ -163,6 +202,16 @@ on boot
 
     # Allow access for CCID command/response timeout configuration
     chown system system /sys/module/ccid_bridge/parameters/bulk_msg_timeout
+
+    chown system system /sys/class/timed_output/vibrator/wf_s0
+    chown system system /sys/class/timed_output/vibrator/wf_s1
+    chown system system /sys/class/timed_output/vibrator/wf_s2
+    chown system system /sys/class/timed_output/vibrator/wf_s3
+    chown system system /sys/class/timed_output/vibrator/wf_s4
+    chown system system /sys/class/timed_output/vibrator/wf_s5
+    chown system system /sys/class/timed_output/vibrator/wf_s6
+    chown system system /sys/class/timed_output/vibrator/wf_s7
+    chown system system /sys/class/timed_output/vibrator/wf_update_now
 
 # MSM specific files that need to be created on /data
 on post-fs-data
@@ -284,6 +333,9 @@ on post-fs-data
     mkdir /data/misc/fm 0770 system system
     chmod 0770 /data/misc/fm
 
+    # Create directory for fm_radio
+    mkdir /data/misc/fm_radio 0770 system system
+
     # Mark the copy complete flag to not completed
     write /data/misc/radio/copy_complete 0
     chown radio radio /data/misc/radio/copy_complete
@@ -304,6 +356,16 @@ on post-fs-data
     mkdir /data/misc/qti-logkit/socket-privileged/ 2770 system system
     mkdir /data/misc/qti-logkit/socket-public/ 2750 system qcom_diag
     mkdir /data/misc/qti-logkit/logdata/ 2750 system shell
+
+    # Tap To Wake
+    chown root system /sys/devices/soc.0/7af6000.i2c/i2c-6/6-0020/input/input0/wake_gesture
+    chmod 0660 /sys/devices/soc.0/7af6000.i2c/i2c-6/6-0020/input/input0/wake_gesture
+
+service qfintverify /sbin/qfintverify
+    user root
+    class core
+    seclabel u:r:qfips:s0
+    oneshot
 
     # Notification LED
     chown system system /sys/class/leds/red/blink
@@ -355,6 +417,9 @@ on property:init.svc.wpa_supplicant=stopped
 
 on property:bluetooth.isEnabled=true
     write /sys/class/bluetooth/hci0/idle_timeout 7000
+
+on property:ro.bluetooth.ftm_enabled=true
+    start ftmd
 
 on property:vold.decrypt=trigger_restart_framework
     start config_bt_addr
@@ -524,13 +589,13 @@ service iprenew_wlan0 /system/bin/dhcpcd -n
     disabled
     oneshot
 
-on property:wifi.ftmd.load=true
-    insmod /system/lib/modules/wlan.ko con_mode=5
-
 service iprenew_p2p /system/bin/dhcpcd -n
     class late_start
     disabled
     oneshot
+
+on property:wifi.ftmd.load=true
+    insmod /system/lib/modules/wlan.ko con_mode=5
 
 service dhcpcd_bt-pan /system/bin/dhcpcd -BKLG
     class late_start
@@ -574,14 +639,18 @@ on property:crypto.driver.load=1
 service atfwd /system/bin/ATFWD-daemon
     class late_start
     user system
+    disabled
     group system radio
+
+on property:sys.boot_completed=1
+    start atfwd
 
 service qcom-sh /system/bin/sh /init.qcom.sh
     class late_start
     user root
     oneshot
 
-service hostapd /system/bin/hostapd -dd /data/hostapd/hostapd.conf
+service hostapd /system/bin/hostapd -dd /data/misc/wifi/hostapd.conf
     class late_start
     user root
     group root
@@ -603,6 +672,18 @@ service charger /charger
     class charger
     group system graphics
     seclabel u:r:healthd:s0
+
+service qbcharger /charger -m 1
+    disabled
+    oneshot
+
+on property:sys.qbcharger.enable=true
+    write /sys/power/wake_lock QuickBoot
+    start qbcharger
+
+on property:sys.qbcharger.enable=false
+    write /sys/power/wake_unlock QuickBoot
+    stop qbcharger
 
 service hvdcp_opti /system/bin/hvdcp_opti
     class main
@@ -628,6 +709,14 @@ service qseeproxydaemon /system/vendor/bin/qseeproxydaemon
     class late_start
     user system
     group system
+
+on property:persist.sys.runin=enable
+    write /sys/class/power_supply/battery/device/BatteryTestStatus 1
+    write /sys/devices/soc.0/qpnp-smbcharger-ed730800/BatteryTestStatus 1
+
+on property:persist.sys.runin=disable
+    write /sys/class/power_supply/battery/device/BatteryTestStatus 0
+    write /sys/devices/soc.0/qpnp-smbcharger-ed730800/BatteryTestStatus 0
 
 on property:sys.dbg.coresight.enable=1
     write /persist/coresight/enable 1

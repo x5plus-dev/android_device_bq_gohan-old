@@ -95,26 +95,6 @@ service audiod /system/bin/audiod
 on boot
     start rmt_storage
     insmod /system/lib/modules/adsprpc.ko
-# access permission for secure touch
-    chmod 0660 /sys/devices/soc.0/78b7000.i2c/i2c-3/3-0020/input/input0/secure_touch_enable
-    chmod 0440 /sys/devices/soc.0/78b7000.i2c/i2c-3/3-0020/input/input0/secure_touch
-    chmod 0660 /sys/devices/soc.0/78b8000.i2c/i2c-4/4-0020/input/input0/secure_touch_enable
-    chmod 0440 /sys/devices/soc.0/78b8000.i2c/i2c-4/4-0020/input/input0/secure_touch
-    chown system drmrpc /sys/devices/soc.0/78b7000.i2c/i2c-3/3-0020/input/input0/secure_touch_enable
-    chown system drmrpc /sys/devices/soc.0/78b7000.i2c/i2c-3/3-0020/input/input0/secure_touch
-    chown system drmrpc /sys/devices/soc.0/78b8000.i2c/i2c-4/4-0020/input/input0/secure_touch_enable
-    chown system drmrpc /sys/devices/soc.0/78b8000.i2c/i2c-4/4-0020/input/input0/secure_touch
-    write /proc/sys/kernel/sched_boost 1
-    
-    # Graphics
-    chown system graphics /sys/class/graphics/fb0/dyn_pu
-    chmod 0664 /sys/class/graphics/fb0/dyn_pu
-    chown system graphics /sys/class/graphics/fb0/idle_time
-    chmod 0664 /sys/class/graphics/fb0/idle_time
-    chown system graphics /sys/class/graphics/fb0/mode
-    chmod 0664 /sys/class/graphics/fb0/mode
-    chown system graphics /sys/class/graphics/fb0/modes
-    chmod 0664 /sys/class/graphics/fb0/modes
 
     # NFC
     chmod 666 /dev/pn547
