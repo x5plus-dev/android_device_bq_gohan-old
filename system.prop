@@ -2,7 +2,7 @@
 audio_hal.period_size=192
 af.fast_track_multiplier=1
 ro.qc.sdk.audio.ssr=false
-ro.qc.sdk.audio.fluencetype=none
+ro.qc.sdk.audio.fluencetype=fluence
 persist.audio.fluence.voicecall=true
 persist.audio.fluence.voicerec=false
 persist.audio.fluence.speaker=false
@@ -120,6 +120,7 @@ persist.radio.proc_nw_scan=1
 persist.radio.adb_log_on
 persist.radio.mt_sms_ack=20
 keyguard.no_require_sim=true
+persist.data.qmi.adb_logmask=0
 
 # TCP
 net.tcp.2g_init_rwnd=10
