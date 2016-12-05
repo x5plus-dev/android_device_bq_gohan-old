@@ -62,6 +62,9 @@ persist.dpm.feature=7
 persist.env.fastdorm.enabled=true
 persist.sys.dpmd.nsrm=3
 
+# Fingerprint
+persist.qfp=false
+
 # FM
 ro.fm.transmitter=false
 persist.sys.fm=qn8035

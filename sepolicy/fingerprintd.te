@@ -1,0 +1,2 @@
+allow fingerprintd tee_device:chr_file { read write ioctl open };
+allow fingerprintd gx_fpd_data_file:dir create_dir_perms;
